@@ -48,11 +48,11 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                         clearFields()
                     } else {
-                        showToast("Invalid username or password, please check the entered data")
+                        showToast("Invalid username or password")
                     }
                 }
             } else {
-                showToast("Invalid username or password, please check the entered data")
+                showToast("Invalid username or password")
             }
         }
 

@@ -92,7 +92,7 @@ class SignupFragment : Fragment() {
                     }
                 }
             } else {
-                showToast("Invalid username or password, please check the entered data")
+                showToast("Invalid username or password")
             }
         }
 
