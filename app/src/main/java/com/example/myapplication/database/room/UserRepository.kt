@@ -6,8 +6,9 @@ import com.example.myapplication.database.models.UserModel
 class UserRepository(private val userDao: UserDao) : DatabaseRepository {
 
     override fun allUsers(): List<UserModel> {
-       return userDao.getAllUsers()
+        return userDao.getAllUsers()
     }
+
     override fun insert(user: UserModel) {
         userDao.insert(user)
     }

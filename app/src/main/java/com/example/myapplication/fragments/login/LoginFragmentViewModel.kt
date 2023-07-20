@@ -22,7 +22,8 @@ class LoginFragmentViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-    suspend fun getUserByNameAndPassword(name: String, password: String) = withContext(Dispatchers.IO) {
-        REPOSITORY.getUserByNameAndPassword(name, password)
-    }
+    suspend fun getUserByNameAndPassword(name: String, password: String) =
+        withContext(Dispatchers.IO) {
+            REPOSITORY.getUserByNameAndPassword(name, password)
+        }
 }

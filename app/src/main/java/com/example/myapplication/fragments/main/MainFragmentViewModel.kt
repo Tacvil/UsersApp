@@ -6,9 +6,9 @@ import com.example.myapplication.utilits.REPOSITORY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MainFragmentViewModel(application: Application): AndroidViewModel(application) {
+class MainFragmentViewModel(application: Application) : AndroidViewModel(application) {
 
-    suspend fun allUsers() =  withContext(Dispatchers.IO) {
+    suspend fun allUsers() = withContext(Dispatchers.IO) {
         REPOSITORY.allUsers()
     }
 }

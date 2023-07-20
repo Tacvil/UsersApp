@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.database.models.UserModel
 
-class MainAdapter(private val usersList: List<UserModel>) : RecyclerView.Adapter<MainAdapter.MainHolder>() {
+class MainAdapter(private val usersList: List<UserModel>) :
+    RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
     class MainHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvTitle: TextView = view.findViewById(R.id.text_view_user_name)

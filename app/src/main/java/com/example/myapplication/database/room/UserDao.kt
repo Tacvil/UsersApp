@@ -8,7 +8,6 @@ import com.example.myapplication.database.models.UserModel
 
 @Dao
 interface UserDao {
-
     @Query("SELECT * from users_table")
     fun getAllUsers(): List<UserModel>
 
