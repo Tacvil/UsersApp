@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Users</string>
-    <string name="btn_log_in">Log in</string>
-    <string name="tv_login">Login</string>
-    <string name="tv_signup">Signup</string>
-    <string name="btn_sign_up">Sign up</string>
+    <string name="button_log_in">Log in</string>
+    <string name="text_view_login">Login</string>
+    <string name="text_view_signup">Signup</string>
+    <string name="button_sign_up">Sign up</string>
     <string name="don_t_have_an_account_signup">Don\'t have an account? <font color="#355C61"><b>SignUp</b></font></string>
     <string name="already_have_an_account_login">Already have an account? <font color="#355C61"><b>Login</b></font></string>
-    <string name="tv_username">Username</string>
+    <string name="text_view_username">Username</string>
     <string name="enter_your_username">Enter your username</string>
     <string name="user_image_contentDescription">User_image</string>
-    <string name="tv_password">Password</string>
+    <string name="text_view_password">Password</string>
     <string name="enter_your_password">Enter your password</string>
 </resources>

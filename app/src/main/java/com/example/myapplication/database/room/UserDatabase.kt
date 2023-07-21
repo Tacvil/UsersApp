@@ -21,7 +21,7 @@ abstract class UserDatabase : RoomDatabase() {
                 database = Room.databaseBuilder(
                     context,
                     UserDatabase::class.java,
-                    "database1"
+                    "database_users"
                 ).build()
                 database as UserDatabase
             } else database as UserDatabase
