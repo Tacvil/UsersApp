@@ -61,7 +61,7 @@ class SignupFragment : Fragment() {
                         isAllowed = false
                         Snackbar.make(
                             binding.root,
-                            "This username already exists, please try another username",
+                            getString(R.string.this_username_already_exists_please_try_another_username),
                             Snackbar.LENGTH_LONG
                         ).show()
                     } else {
@@ -81,18 +81,18 @@ class SignupFragment : Fragment() {
                 lifecycleScope.launch {
                     if (isAllowed) {
                         viewModel.insert(UserModel(nameUser = USERNAME, passwordUser = PASSWORD))
-                        showToast("Your data has been successfully saved!")
+                        showToast(getString(R.string.your_data_has_been_successfully_saved))
                         findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                     } else {
                         Snackbar.make(
                             binding.root,
-                            "This username already exists, please try another username",
+                            getString(R.string.this_username_already_exists_please_try_another_username),
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
                 }
             } else {
-                showToast("Invalid username or password")
+                showToast(getString(R.string.invalid_username_or_password))
             }
         }
 
