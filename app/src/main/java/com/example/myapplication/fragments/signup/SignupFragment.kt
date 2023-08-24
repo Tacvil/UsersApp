@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.database.models.UserModel
 import com.example.myapplication.databinding.FragmentSignupBinding
+import com.example.myapplication.viewModels.MainViewModel
 import com.example.myapplication.utilits.PASSWORD
 import com.example.myapplication.utilits.USERNAME
 import com.example.myapplication.utilits.showToast
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
-    private lateinit var viewModel: SignupFragmentViewModel
+    private lateinit var viewModel: MainViewModel
     private var isAllowed: Boolean = false
 
     override fun onCreateView(
@@ -36,7 +37,7 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[SignupFragmentViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         binding.textInputUsername.addTextChangedListener(object : TextWatcher {
 
@@ -57,6 +58,7 @@ class SignupFragment : Fragment() {
 
                 lifecycleScope.launch {
                     USERNAME = s.toString().trim()
+
                     if (viewModel.getUserByName(USERNAME)) {
                         isAllowed = false
                         Snackbar.make(
@@ -72,13 +74,13 @@ class SignupFragment : Fragment() {
         })
 
         binding.buttonSignUp.setOnClickListener {
-
             USERNAME = binding.textInputUsername.text.toString().trim()
             PASSWORD = binding.textInputUserPassword.text.toString().trim()
 
             if (USERNAME.isNotEmpty() && PASSWORD.isNotEmpty()) {
 
                 lifecycleScope.launch {
+
                     if (isAllowed) {
                         viewModel.insert(UserModel(nameUser = USERNAME, passwordUser = PASSWORD))
                         showToast(getString(R.string.your_data_has_been_successfully_saved))

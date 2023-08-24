@@ -1,15 +1,18 @@
-package com.example.myapplication.fragments.login
+package com.example.myapplication.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.myapplication.utilits.REPOSITORY
-import com.example.myapplication.utilits.TYPE_ROOM
+import androidx.lifecycle.viewModelScope
+import com.example.myapplication.database.models.UserModel
 import com.example.myapplication.database.room.UserDatabase
 import com.example.myapplication.database.room.UserRepository
+import com.example.myapplication.utilits.REPOSITORY
+import com.example.myapplication.utilits.TYPE_ROOM
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginFragmentViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val context = application
 
@@ -22,8 +25,21 @@ class LoginFragmentViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
+    fun insert(user: UserModel) =
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.insert(user)
+        }
+
     suspend fun getUserByNameAndPassword(name: String, password: String) =
         withContext(Dispatchers.IO) {
             REPOSITORY.getUserByNameAndPassword(name, password)
         }
+
+    suspend fun allUsers() = withContext(Dispatchers.IO) {
+        REPOSITORY.allUsers()
+    }
+
+    suspend fun getUserByName(user: String) = withContext(Dispatchers.IO) {
+        REPOSITORY.getUserByName(user)
+    }
 }

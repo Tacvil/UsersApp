@@ -9,12 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentMainBinding
+import com.example.myapplication.viewModels.MainViewModel
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private lateinit var viewModel: MainFragmentViewModel
+    private lateinit var viewModel: MainViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var mainAdapter: MainAdapter
 
@@ -28,8 +29,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        viewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         lifecycleScope.launch {
             mainAdapter = MainAdapter(viewModel.allUsers().asReversed())
             recyclerView = binding.recyclerView

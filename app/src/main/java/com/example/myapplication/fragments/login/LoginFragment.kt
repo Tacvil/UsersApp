@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.viewModels.MainViewModel
 import com.example.myapplication.utilits.PASSWORD
 import com.example.myapplication.utilits.TYPE_ROOM
 import com.example.myapplication.utilits.USERNAME
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var viewModel: LoginFragmentViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +32,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.initDatabase(TYPE_ROOM)
 
         binding.buttonLogIn.setOnClickListener {
-
             USERNAME = binding.textInputUsername.text.toString().trim()
             PASSWORD = binding.textInputUserPassword.text.toString().trim()
 
             if (USERNAME.isNotEmpty() && PASSWORD.isNotEmpty()) {
 
                 lifecycleScope.launch {
+
                     if (viewModel.getUserByNameAndPassword(USERNAME, PASSWORD)) {
                         showToast("Hello, $USERNAME, you have successfully logged in!")
                         findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
